@@ -1,0 +1,7 @@
+# Build output (regenerable via packaging/build-deb.sh)
+buildout/
+# Executor scratch space
+scratch/
+# Python cruft
+__pycache__/
+*.pyc

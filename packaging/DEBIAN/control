@@ -1,0 +1,36 @@
+Package: looksee
+Version: 0.2.2
+Architecture: all
+Section: graphics
+Priority: optional
+Depends: python3 (>= 3.10), python3-gi, gir1.2-gtk-4.0, gir1.2-adw-1, libadwaita-1-0
+Maintainer: Kris Forbes <krisf@users.noreply.github.com>
+Description: fast dark single-window image viewer
+ Looksee opens an image, flips through the containing folder with arrow
+ keys or the headerbar buttons, zooms (fit / 1:1 / 0.1x-8x, Ctrl+wheel),
+ goes fullscreen with F11, and loops the folder as a slideshow on a
+ configurable interval (default 5 s, optional 220 ms crossfade).
+ .
+ Compact GTK4 / libadwaita application; settings live in
+ ~/.config/looksee/config.json.
+ .
+ A look-ahead cache pre-renders the three pictures around the current
+ one (two forward, one back) under a hard 200 MB budget, so next and
+ previous land instantly even in huge folders.
+ .
+ 0.2.0 (FTR2): true-black OLED UI; slideshow orientation filter
+ (all / landscape / portrait); the headerbar auto-hides 5 s into a
+ slideshow and returns on any mouse activity.
+ .
+ 0.2.1 (FTR3): every storage read — folder enumeration, image decode,
+ file metadata, orientation probes — is asynchronous, so on very slow
+ mounts (network shares, rclone/restic FUSE) the window always stays
+ responsive; pictures and listings simply arrive when the mount
+ answers, and the previous slide stays visible until the next one is
+ ready.
+ .
+ 0.2.2 (FTR5): large images open fast — each picture first decodes at
+ viewport resolution (a 48-megapixel JPEG costs a few MB of RAM instead
+ of ~200 MB, so the look-ahead cache now holds a dozen of them), and
+ zooming in past that detail — or growing the window — re-decodes in the
+ background at true resolution, bounded so memory stays under control.

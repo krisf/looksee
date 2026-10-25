@@ -1,0 +1,20 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  tests:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install GTK stack
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            python3 python3-gi gir1.2-gtk-4.0 gir1.2-adw-1
+      - name: py_compile
+        run: python3 -m py_compile src/*.py tests/*.py scripts/smoke_*.py
+      - name: Unit tests
+        run: python3 -m unittest discover -s tests -q
