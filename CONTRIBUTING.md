@@ -30,3 +30,7 @@ Two standing rules the test-suite enforces mechanically:
 
 Describe the user-visible delta, paste the test/smoke output, and update
 `CHANGELOG.md`.
+
+Before touching the IO paths, the skin, the auto-hide state machine or the
+packaging, read [`AGENTS.md`](AGENTS.md) — it records the constraints that are
+invisible in the code and the incidents behind them.
